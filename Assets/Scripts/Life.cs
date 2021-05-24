@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Doozy.Engine.UI;
+//using Doozy.Engine.UI;
 
 public class Life : MonoBehaviour
 {
@@ -66,8 +66,10 @@ public class Life : MonoBehaviour
         isDie = true;
         if (transform.parent.tag == "Player")
         {
-            UIPopup pop = UIPopup.GetPopup("die");
-            pop.Show();
+            //ui
+            //UIPopup pop = UIPopup.GetPopup("die");
+            //pop.Show();
+
         }
         transform.parent.position = new Vector3(transform.position.x, transform.position.y, -1);
         GetComponentInParent<BoxCollider2D>().enabled = false;
