@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,200">
+  <displayList>
+    <list id="n1_lfbc" name="list" xy="0,0" size="150,200" overflow="scroll" defaultItem="ui://5eyvfdeblfbch">
+      <relation target="" sidePair="width-width"/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+  <relation target="n1_lfbc" sidePair="height-height"/>
+</component>

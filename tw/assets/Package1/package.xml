@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="5eyvfdeb">
+  <resources>
+    <component id="lfbc1" name="Research.xml" path="/" exported="true"/>
+    <image id="lfbc3" name="ui_search_panel.png" path="/" scale9grid="32,32,64,64" smoothing="false"/>
+    <image id="lfbc6" name="ui_cancel.png" path="/" smoothing="false"/>
+    <image id="lfbc7" name="ui_search_panel(1).png" path="/" scale="9grid" scale9grid="32,32,64,64" smoothing="false"/>
+    <image id="lfbc8" name="ui_search_item0.png" path="/" scale="9grid" scale9grid="22,3,22,24" smoothing="false"/>
+    <image id="lfbca" name="ui_search_item0_select.png" path="/" scale="9grid" scale9grid="16,2,32,21" smoothing="false"/>
+    <component id="lfbcb" name="Button1.xml" path="/"/>
+    <image id="lfbcc" name="ui_search_item1.png" path="/" scale9grid="0,0,0,-37" smoothing="false"/>
+    <image id="lfbcd" name="ui_search_item1_select.png" path="/" scale9grid="0,0,0,-37" smoothing="false"/>
+    <component id="lfbch" name="ComboBox1_item.xml" path="/"/>
+    <component id="lfbci" name="ComboBox1_popup.xml" path="/"/>
+    <component id="lfbcj" name="ComboBox1.xml" path="/"/>
+    <component id="lfbcl" name="search_item1.xml" path="/"/>
+    <component id="vxu0o" name="search_item0.xml" path="/"/>
+  </resources>
+  <publish name="" path="E:\UnityProject\tw\Assets\FGUI" packageCount="2"/>
+</packageDescription>
