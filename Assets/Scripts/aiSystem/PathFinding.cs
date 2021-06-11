@@ -11,10 +11,20 @@ public class PathFinding : MonoBehaviour
         public Vector3Int left, right;
         int height, length;
 
-        public Plat(Vector3Int leftPoint, Vector3Int rightPoint)
+
+        public Plat(Vector3Int leftPoint, Vector3Int rightPoint, int[] edge)
         {
-            left = leftPoint;
-            right = rightPoint;
+            left = new Vector3Int(leftPoint.x, leftPoint.y + 1, leftPoint.z);
+            right = new Vector3Int(rightPoint.x + 1, rightPoint.y + 1, rightPoint.z);
+
+            length = rightPoint.x - leftPoint.x;
+            height = rightPoint.y;
+        }
+
+        public Plat(Vector3Int leftPoint, Vector3Int rightPoint, int[] edge1, int[] edge2)
+        {
+            left = new Vector3Int(leftPoint.x, leftPoint.y + 1, leftPoint.z);
+            right = new Vector3Int(rightPoint.x + 1, rightPoint.y + 1, rightPoint.z);
 
             length = rightPoint.x - leftPoint.x;
             height = rightPoint.y;
@@ -70,7 +80,7 @@ public class PathFinding : MonoBehaviour
         TileBase near_10 = tileMap.GetTile(new Vector3Int(tilePos.x - 1, tilePos.y, tilePos.z));
 
         //如果上方有障碍，无法站立，不是平台。
-        for(int i = 0; i < height; i++)
+        for (int i = 0; i < height; i++)
         {
             if (nearTops[i])
             {
@@ -82,13 +92,14 @@ public class PathFinding : MonoBehaviour
         {
             edgePoint[1] = 1;
             edgePoint[3] = 1;
-            
+
         }
         //右上
         for (int i = 0; i < height; i++)
         {
             if (nearTopRights[i])
             {
+                edgePoint[1] = 1;
                 edgePoint[3] = 0;
                 break;
             }
@@ -96,6 +107,7 @@ public class PathFinding : MonoBehaviour
         //如左无瓦片
         if (!near_10)
         {
+            edgePoint[0] = 1;
             edgePoint[2] = -1;
         }
         //左上
@@ -108,7 +120,7 @@ public class PathFinding : MonoBehaviour
                 break;
             }
         }
- 
+
         return edgePoint;
     }
 
@@ -120,92 +132,93 @@ public class PathFinding : MonoBehaviour
         //BoundsInt bounds = new BoundsInt(sv.x - r, sv.y - r, 0, r*2, r*2, 1);
         //TileBase[] tiles = tileMap.GetTilesBlock(bounds);
 
-        rightTop = new Vector2Int(sv.x+r,sv.y+r);
-        Vector3Int rightEdgePoint = new Vector3Int(-65535, -65535, -65535);
+        rightTop = new Vector2Int(sv.x + r, sv.y + r);
+        //Vector3Int rightEdgePoint = new Vector3Int(-65535, -65535, -65535);
 
         allNearPlat = new List<Plat>();
 
 
-        //for test
-        TileBase[] tiles = new TileBase[r*r*4];
-        Vector3Int tilePos3;
+
+        Dictionary<int, Dictionary<Vector3Int, int[]>> edges = new Dictionary<int, Dictionary<Vector3Int, int[]>>();
+        Dictionary<Vector3Int, int[]> edge_dic = new Dictionary<Vector3Int, int[]>();
         for (int i = 0; i < r * r * 4; i++)
         {
-            tilePos3 = new Vector3Int(rightTop.x - i % r, rightTop.y + 1 - i / r, 0);
-            tiles[i] = tileMap.GetTile(tilePos3);
-        }
+
+            Vector3Int tilePos = new Vector3Int(rightTop.x - (i % (2 * r)), rightTop.y + 1 - (i / (2 * r)), 0);
+
+            //for debug
+            if (tilePos.x == -10 && tilePos.y == 2)
+            {
+                int e = 1;
+            }
 
 
-        //遍历角色周围所有瓦片，从右上角开始
-        for (int i = 0; i < r * r * 4; i++)
-        {
-            Vector3Int tilePos = new Vector3Int(rightTop.x - i % r, rightTop.y + 1 - i / r, 0);
             int[] edge = SetEdgePoint(tilePos, 1.8f);
-
-            //每行第一个瓦片且右边缘点不存在且该点可站立
-            if (i % r == 0 && rightEdgePoint.z == -65535 && edge != null)
+            if (edge != null && (edge[0] != 0 || edge[1] != 0))
             {
-                if(edge[0] == 0 && edge[1] == 1)
-                {
-                    rightEdgePoint = tilePos;
-                    continue;
-                }else if(edge[0] == 1 && edge[1] == 1)
-                {
-                    allNearPlat.Add(new Plat(tilePos, tilePos));
-                    continue;
-                }
+                edge_dic[tilePos] = edge;
+            }
+            if (tilePos.x == rightTop.x - 2 * r + 1 && edge_dic.Count != 0)
+            {
+                edges[tilePos.y] = edge_dic;
+                edge_dic = new Dictionary<Vector3Int, int[]>();
+            }
+        }
+        foreach (var item in edges)
+        {
+            List<Vector3Int> v3 = new List<Vector3Int>(item.Value.Keys);
+
+            if (item.Value[v3[0]][0] == 1 && item.Value[v3[0]][1] == 0)
+            {
                 //向该瓦片右侧寻找右边缘点
-                for (int ii = 0; ii< 100; ii++)
+                for (int ii = 1; ii < 100; ii++)
                 {
-                    Vector3Int tilePos2 = new Vector3Int(tilePos.x + ii, tilePos.y, tilePos.z);
+                    Vector3Int tilePos2 = new Vector3Int(v3[0].x + ii, v3[0].y, v3[0].z);
                     int[] edge2 = SetEdgePoint(tilePos2, 1.8f);
-                    if (edge2 != null || ii == 99)
+                    if ((edge2 != null && (edge2[0] != 0 || edge2[1] != 0)) || ii == 99)
                     {
-                        rightEdgePoint = tilePos2;
-                        break;
-                    }
-                }
-            }
-            //每行最后一个瓦片且右边缘点存在
-            else if (i % r == r-1 && rightEdgePoint.z != -65535)
-            {
-                //向该瓦片左侧寻找右边缘点
-                for (int ii = 0; ii < 100; ii++)
-                {
-                    Vector3Int tilePos2 = new Vector3Int(tilePos.x - ii, tilePos.y, tilePos.z);
-                    int[] edge2 = SetEdgePoint(tilePos2, 1.8f);
-                    if (edge2 != null || ii == 99)
-                    {
-                        allNearPlat.Add(new Plat(tilePos2, rightEdgePoint));
-                        rightEdgePoint.z = -65535;
+                        allNearPlat.Add(new Plat(v3[0], tilePos2, item.Value[v3[0]], edge2));
+                        v3.Remove(v3[0]);
                         break;
                     }
                 }
             }
 
-            if (edge != null)
+            if (v3.Count != 0)
+                if (item.Value[v3[v3.Count - 1]][0] == 0 && item.Value[v3[v3.Count - 1]][1] == 1)
+                {
+                    //向该瓦片左侧寻找左边缘点
+                    for (int ii = 1; ii < 100; ii++)
+                    {
+                        Vector3Int tilePos2 = new Vector3Int(v3[v3.Count - 1].x - ii, v3[v3.Count - 1].y, v3[v3.Count - 1].z);
+                        int[] edge2 = SetEdgePoint(tilePos2, 1.8f);
+                        if ((edge2 != null && (edge2[0] != 0 || edge2[1] != 0)) || ii == 99)
+                        {
+                            allNearPlat.Add(new Plat(tilePos2, v3[v3.Count - 1], edge2, item.Value[v3[v3.Count - 1]]));
+                            v3.Remove(v3[v3.Count - 1]);
+                            break;
+                        }
+                    }
+                }
+
+
+            for (int i = 0; i < v3.Count; i++)
             {
-                //右边缘点存在，则该边缘点肯定为左边缘点，匹配
-                if (rightEdgePoint.z != -65535)
+                if (item.Value[v3[i]][0] == 1 && item.Value[v3[i]][1] == 1)
                 {
-                    allNearPlat.Add(new Plat(tilePos, rightEdgePoint));
-                    rightEdgePoint.z = -65535;
+                    allNearPlat.Add(new Plat(v3[i], v3[i], item.Value[v3[i]]));
+                    continue;
                 }
-                //单格瓦片平台
-                else if(edge[0]==1 && edge[1] == 1)
-                {
-                    allNearPlat.Add(new Plat(tilePos, tilePos));
-                }
-                //是右边缘点
                 else
                 {
-                    rightEdgePoint = tilePos;
+                    allNearPlat.Add(new Plat(v3[i + 1], v3[i], item.Value[v3[i + 1]], item.Value[v3[i]]));
+                    i++;
+                    continue;
                 }
 
             }
-            
         }
-        
+
 
     }
 
@@ -226,10 +239,10 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(allNearPlat!=null)
+        if (allNearPlat != null)
             foreach (Plat p in allNearPlat)
             {
-                Debug.DrawLine(new Vector3(p.left.x, p.left.y, 0), new Vector3(p.right.x, p.right.y, 0));
+                Debug.DrawLine(new Vector3(p.left.x, p.left.y, 0), new Vector3(p.right.x, p.right.y, 0), Color.gray);
             }
         Debug.DrawLine(new Vector3(rightTop.x, rightTop.y, 0), new Vector3(rightTop.x - 2 * r, rightTop.y - 2 * r, 0), Color.red);
     }
