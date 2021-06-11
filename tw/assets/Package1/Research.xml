@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <text id="n15_vxu0" name="describe" xy="406,305" size="213,70" fontSize="12" autoSize="none" text=""/>
+    <graph id="n16_vxu0" name="display" xy="446,102" size="132,132" type="rect" lineSize="0" fillColor="#00ffffff"/>
+    <image id="n3_lfbc" name="n3" src="lfbc3" fileName="ui_search_panel.png" xy="86,-6" size="646,649" group="n17_vxu0"/>
+    <image id="n5_lfbc" name="n5" src="lfbc6" fileName="ui_cancel.png" xy="115,29" size="92,92" group="n17_vxu0"/>
+    <image id="n9_lfbc" name="n9" src="lfbc7" fileName="ui_search_panel(1).png" xy="190,94" size="203,440" group="n17_vxu0"/>
+    <image id="n14_vxu0" name="n14" src="lfbc7" fileName="ui_search_panel(1).png" xy="390,94" size="250,250" group="n17_vxu0"/>
+    <group id="n17_vxu0" name="panel" xy="86,-6" size="646,649"/>
+    <list id="n11_lfbc" name="list" xy="213,124" size="159,377" selectionMode="multipleSingleClick" overflow="scroll" lineGap="7" treeView="true" indent="15" clickToExpand="1">
+      <item url="ui://5eyvfdebvxu0o" level="0"/>
+      <item url="ui://5eyvfdeblfbcl" level="1"/>
+    </list>
+  </displayList>
+</component>

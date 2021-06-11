@@ -8,6 +8,7 @@ public class DataPool : MonoBehaviour
     public List<GameObject> itemsIns;
     public Dictionary<string, GameObject> dic_rewards;
     public Dictionary<string, GameObject> dic_itemsIns;
+    public Dictionary<string, List<string>> dic_researchTree;
     Dictionary<string, Object> dic_drop;
 
     public Dictionary<string, Item> dic_items;
@@ -30,7 +31,9 @@ public class DataPool : MonoBehaviour
         dic_items["diamond"] = new Item("diamond");
         dic_items["ground"] = new Item("ground");
 
-
+        dic_researchTree = new Dictionary<string, List<string>>();
+        dic_researchTree["科技Ⅳ"] = new List<string> { "散弹枪", "gun" };
+        dic_researchTree["工艺"] = new List<string> { "sword", "bow"};
 
 
 
