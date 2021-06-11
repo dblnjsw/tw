@@ -1,5 +1,7 @@
 !.gitignore
 Assets/Doozy
+Assets/FairyGUI
+Assets/StreamingAssets
 !Assets/
 !Packages/
 !ProjectSettings/
@@ -16,3 +18,4 @@ Library/
 *.sln
 *.htm
 
+Temp/

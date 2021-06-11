@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Doozy.Engine.UI;
+//using Doozy.Engine.UI;
 
 public class UIEvent : MonoBehaviour
 {
@@ -14,16 +14,16 @@ public class UIEvent : MonoBehaviour
     public void ChangeScene(string sceneName)
     {        
         SceneManager.LoadScene(sceneName);
-        UIPopup pop = UIPopup.GetPopup("die");
-        pop.Hide();
+        //UIPopup pop = UIPopup.GetPopup("die");
+        //pop.Hide();
     }
 
     public void Show_pop_ecs()
     {
-        if (!UIPopup.AnyPopupVisible)
-        {
-            UIPopup.GetPopup("ecs").Show();
-        }
+        //if (!UIPopup.AnyPopupVisible)
+        //{
+        //    UIPopup.GetPopup("ecs").Show();
+        //}
     }
 
 
