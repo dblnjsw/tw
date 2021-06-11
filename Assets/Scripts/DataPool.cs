@@ -16,6 +16,11 @@ public class DataPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DataManager dataManager = Resources.Load<DataManager>("DataAssets/data");
+        foreach(ItemDescribe e in dataManager.dataArray)
+        {
+            Debug.Log(e.Describe);
+        }
         //初始化所有物品
         dic_items = new Dictionary<string, Item>();
         dic_itemsIns = new Dictionary<string, GameObject>();
