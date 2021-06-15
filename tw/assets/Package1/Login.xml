@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <image id="n0_b237" name="n0" src="lfbc7" fileName="ui_search_panel(1).png" xy="181,167" size="439,307" group="n11_b237"/>
+    <image id="n1_b237" name="cancel" src="lfbc6" fileName="ui_cancel.png" xy="172,154" size="83,83" group="n11_b237"/>
+    <text id="n6_b237" name="n6" xy="336,194" size="138,62" group="n11_b237" fontSize="42" color="#ffffff" autoSize="none" text="LOGIN&#xA;"/>
+    <text id="n7_b237" name="text_username" xy="267,280" size="134,56" group="n11_b237" fontSize="18" color="#ffffff" autoSize="none" text="User Name:"/>
+    <text id="n8_b237" name="text_username" xy="267,335" size="108,56" group="n11_b237" fontSize="18" color="#ffffff" autoSize="none" text="Password:"/>
+    <text id="n9_b237" name="input_username" xy="386,280" size="154,26" group="n11_b237" fontSize="18" color="#ffffff" autoSize="none" text="" input="true"/>
+    <text id="n10_b237" name="input_password" xy="386,336" size="154,26" group="n11_b237" fontSize="18" color="#ffffff" autoSize="none" text="" input="true" password="true"/>
+    <component id="n14_b237" name="btn_login" src="b237r" fileName="btn1.xml" xy="375,389" group="n11_b237"/>
+    <movieclip id="n16_b237" name="n16" src="b237v" fileName="loading (2).jta" xy="535,402" group="n11_b237" frame="301"/>
+    <group id="n11_b237" name="n11" xy="172,154" size="448,320"/>
+  </displayList>
+</component>

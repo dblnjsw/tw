@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="5eyvfdeb">
   <resources>
-    <component id="lfbc1" name="Research.xml" path="/" exported="true"/>
+    <component id="lfbc1" name="Research.xml" path="/"/>
     <image id="lfbc3" name="ui_search_panel.png" path="/" scale9grid="32,32,64,64" smoothing="false"/>
     <image id="lfbc6" name="ui_cancel.png" path="/" smoothing="false"/>
     <image id="lfbc7" name="ui_search_panel(1).png" path="/" scale="9grid" scale9grid="32,32,64,64" smoothing="false"/>
@@ -15,6 +15,11 @@
     <component id="lfbcj" name="ComboBox1.xml" path="/"/>
     <component id="lfbcl" name="search_item1.xml" path="/"/>
     <component id="vxu0o" name="search_item0.xml" path="/"/>
+    <component id="b237p" name="Login.xml" path="/" exported="true"/>
+    <image id="b237q" name="ui_button1-export.png" path="/" scale="9grid" scale9grid="8,27,49,13" smoothing="false"/>
+    <component id="b237r" name="btn1.xml" path="/"/>
+    <movieclip id="b237t" name="loading.jta" path="/"/>
+    <movieclip id="b237v" name="loading (2).jta" path="/" atlas="alone_mof"/>
   </resources>
-  <publish name="" path="E:\UnityProject\tw\Assets\FGUI" packageCount="2"/>
+  <publish name="" path="E:\UnityProject\tw1\Assets\FGUI" packageCount="2"/>
 </packageDescription>

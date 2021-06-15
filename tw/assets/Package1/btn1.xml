@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="64,64" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n0_b237" name="n0" src="b237q" fileName="ui_button1-export.png" xy="0,0">
+      <gearDisplay controller="button" pages="0,2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_b237" name="n1" src="b237q" fileName="ui_button1-export.png" xy="0,0">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2_b237" name="title" xy="10,22" size="45,19" fontSize="12" color="#ffffff" align="center" vAlign="middle" autoSize="none" singleLine="true" text="login&#xA;">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button downEffect="dark" downEffectValue=".8"/>
+</component>
